@@ -1,29 +1,39 @@
-import os
 import json
+import os
+
 import openai
+
 from helper_functions import llm
 
-category_n_course_name = {'Programming and Development': ['Web Development Bootcamp',
-                                                          'Introduction to Cloud Computing',
-                                                          'Advanced Web Development',
-                                                          'Cloud Architecture Design'],
-                          'Data Science & AI': ['Data Science with Python',
-                                                'AI and Machine Learning for Beginners',
-                                                'Machine Learning with R',
-                                                'Deep Learning with TensorFlow'],
-                          'Marketing': ['Digital Marketing Masterclass',
-                                        'Social Media Marketing Strategy'],
-                          'Cybersecurity': ['Cybersecurity Fundamentals',
-                                            'Ethical Hacking for Beginners'],
-                          'Business and Management': ['Project Management Professional (PMP)Â® Certification Prep',
-                                                      'Agile Project Management'],
-                          'Writing and Literature': ['Creative Writing Workshop',
-                                                     'Advanced Creative Writing'],
-                          'Design': ['Graphic Design Essentials', 'UI/UX Design Fundamentals']}
+category_n_course_name = {
+    "Programming and Development": [
+        "Web Development Bootcamp",
+        "Introduction to Cloud Computing",
+        "Advanced Web Development",
+        "Cloud Architecture Design",
+    ],
+    "Data Science & AI": [
+        "Data Science with Python",
+        "AI and Machine Learning for Beginners",
+        "Machine Learning with R",
+        "Deep Learning with TensorFlow",
+    ],
+    "Marketing": ["Digital Marketing Masterclass", "Social Media Marketing Strategy"],
+    "Cybersecurity": ["Cybersecurity Fundamentals", "Ethical Hacking for Beginners"],
+    "Business and Management": [
+        "Project Management Professional (PMP)Â® Certification Prep",
+        "Agile Project Management",
+    ],
+    "Writing and Literature": [
+        "Creative Writing Workshop",
+        "Advanced Creative Writing",
+    ],
+    "Design": ["Graphic Design Essentials", "UI/UX Design Fundamentals"],
+}
 
 # Load the JSON file
-filepath = './data/courses-full.json'
-with open(filepath, 'r') as file:
+filepath = "./data/courses-full.json"
+with open(filepath, "r") as file:
     json_string = file.read()
     dict_of_courses = json.loads(json_string)
 
@@ -54,22 +64,22 @@ def identify_category_and_courses(user_message):
     without any enclosing tags or delimiters.
     """
 
-    messages =  [
-        {'role':'system',
-         'content': system_message},
-        {'role':'user',
-         'content': f"{delimiter}{user_message}{delimiter}"},
+    messages = [
+        {"role": "system", "content": system_message},
+        {"role": "user", "content": f"{delimiter}{user_message}{delimiter}"},
     ]
     category_and_product_response_str = llm.get_completion_by_messages(messages)
-    category_and_product_response_str = category_and_product_response_str.replace("'", "\"")
+    category_and_product_response_str = category_and_product_response_str.replace(
+        "'", '"'
+    )
     category_and_product_response = json.loads(category_and_product_response_str)
     return category_and_product_response
-    
+
 
 def get_course_details(list_of_relevant_category_n_course: list[dict]):
     course_names_list = []
     for x in list_of_relevant_category_n_course:
-        course_names_list.append(x.get('course_name')) # x["course_name"]
+        course_names_list.append(x.get("course_name"))  # x["course_name"]
 
     list_of_course_details = []
     for course_name in course_names_list:
@@ -110,15 +120,13 @@ def generate_response_based_on_course_details(user_message, product_details):
     Make sure to include {delimiter} to separate every step.
     """
 
-    messages =  [
-        {'role':'system',
-         'content': system_message},
-        {'role':'user',
-         'content': f"{delimiter}{user_message}{delimiter}"},
+    messages = [
+        {"role": "system", "content": system_message},
+        {"role": "user", "content": f"{delimiter}{user_message}{delimiter}"},
     ]
 
     response_to_customer = llm.get_completion_by_messages(messages)
-    response_to_customer = response_to_customer.split(delimiter)[-1]
+    response_to_customer = response_to_customer.strip(delimiter).split(delimiter)[-1]
     return response_to_customer
 
 
@@ -134,6 +142,5 @@ def process_user_message(user_input):
 
     # Process 3: Generate Response based on Course Details
     reply = generate_response_based_on_course_details(user_input, course_details)
-
 
     return reply, course_details

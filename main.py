@@ -11,7 +11,7 @@ from logics.customer_query_handler import process_user_message
 st.set_page_config(layout="centered", page_title="My Streamlit App")
 # endregion <--------- Streamlit App Configuration --------->
 
-st.title("Streamlit App2")
+st.title("Streamlit App")
 
 
 if not check_password():
