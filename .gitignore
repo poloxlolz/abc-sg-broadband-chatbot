@@ -36,3 +36,4 @@ dist/
 .streamlit/secrets.toml
 
 .DS_Store
+broadband_vectorstore
