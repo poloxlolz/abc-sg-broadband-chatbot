@@ -5,6 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "crewai>=0.157.0",
+    "crewai-tools>=0.60.0",
     "openai>=1.99.6",
     "pandas>=2.3.1",
     "python-dotenv>=1.1.1",

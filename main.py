@@ -2,6 +2,7 @@
 import pandas as pd
 import streamlit as st
 
+from crew import simple_crew
 from helper_functions.utility import check_password
 
 # from helper_functions import llm
@@ -28,11 +29,13 @@ if form.form_submit_button("Submit"):
 
     st.divider()
 
-    response, course_details = process_user_message(user_prompt)
-    st.write(response)
+    st.write(simple_crew.get_deals())
 
-    st.divider()
+    # response, course_details = process_user_message(user_prompt)
+    # st.write(response)
 
-    print(course_details)
-    df = pd.DataFrame(course_details)
-    df
+    # st.divider()
+
+    # print(course_details)
+    # df = pd.DataFrame(course_details)
+    # df
