@@ -1,13 +1,18 @@
 # Set up and run this Streamlit App
+# from helper_functions import llm
+import platform
+
 import pandas as pd
 import streamlit as st
 
 from crew import simple_crew
 from helper_functions.utility import check_password
 
-# from helper_functions import llm
-from logics.customer_query_handler import process_user_message
+if platform.system() == "Linux":
+    __import__("pysqlite3")
+    import sys
 
+    sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 # region <--------- Streamlit App Configuration --------->
 st.set_page_config(layout="centered", page_title="My Streamlit App")
 # endregion <--------- Streamlit App Configuration --------->
