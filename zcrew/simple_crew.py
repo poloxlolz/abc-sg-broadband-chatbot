@@ -95,7 +95,7 @@ vectordb = Chroma(
 )
 retriever = vectordb.as_retriever(search_kwargs={"k": 3})
 
-prompt = hub.pull("rlm/rag-prompt")
+# prompt = hub.pull("rlm/rag-prompt")
 # vectordb = Chroma.from_documents(
 #     documents=chunked_docs,
 #     embedding=embeddings,
@@ -105,12 +105,12 @@ prompt = hub.pull("rlm/rag-prompt")
 # vectordb.persist()
 
 
-rag_chain = (
-    {"context": retriever, "question": RunnablePassthrough()}
-    | prompt
-    | llm
-    | StrOutputParser()
-)
+# rag_chain = (
+#     {"context": retriever, "question": RunnablePassthrough()}
+#     | prompt
+#     | llm
+#     | StrOutputParser()
+# )
 
 
 contextualize_q_system_prompt = (
