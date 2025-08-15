@@ -5,13 +5,8 @@ import streamlit as st
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
 
+from utils.Copywriting_utils import Copies
 from utils.llm_utils import LLM_Utils
-
-
-class Copywriting(str, Enum):
-    GREETINGS = "Hello! How can I help you today?"
-    CHAT_INPUT_PLACEHOLDER = "Ask anything"
-    TRY_AGAIN = "Sorry, unexpected issue encountered, please try again later!"
 
 
 class ChatBubbleStyling(str, Enum):
@@ -57,9 +52,7 @@ class StreamlitUtils:
     def initialise_session_state(self):
         if "chat_history" not in st.session_state:
             st.session_state.chat_history = ChatMessageHistory()
-            st.session_state.chat_history.add_ai_message(
-                message=Copywriting.GREETINGS.value
-            )
+            st.session_state.chat_history.add_ai_message(message=Copies.GREETINGS.value)
 
     @staticmethod
     def render_spinner():
@@ -86,13 +79,15 @@ class StreamlitUtils:
             time.sleep(delay)
 
     def render_content(self, base_cls):
+        content = base_cls.content.replace("$", r"\$")
+
         if isinstance(base_cls, HumanMessage):
             st.markdown(
-                body=ChatBubbleStyling.HUMAN.format(content=base_cls.content),
+                body=ChatBubbleStyling.HUMAN.format(content=content),
                 unsafe_allow_html=True,
             )
         else:
-            st.markdown(body=base_cls.content, unsafe_allow_html=True)
+            st.markdown(body=content, unsafe_allow_html=True)
 
     def render_chat_history(self):
         for base_cls in st.session_state.chat_history.messages:
@@ -100,7 +95,7 @@ class StreamlitUtils:
 
     def render_question_and_answer(self):
         if prompt := st.chat_input(
-            placeholder=Copywriting.CHAT_INPUT_PLACEHOLDER.value, max_chars=1000
+            placeholder=Copies.CHAT_INPUT_PLACEHOLDER.value, max_chars=1000
         ):
             human_msg = HumanMessage(content=prompt)
             # st.session_state.chat_history.add_message(message=human_msg)

@@ -10,8 +10,8 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_text_splitters.markdown import MarkdownTextSplitter
 
 import utils.prompt_templates as prompt_templates
+from utils.Copywriting_utils import Copies
 from utils.crewai_utils import BroadbandCrew
-from utils.streamlit_utils import Copywriting
 
 
 class LLM_Utils:
@@ -63,4 +63,4 @@ class LLM_Utils:
         except Exception as e:
             return f"Error : {e}"
 
-        return response.get("answer", Copywriting.TRY_AGAIN.value)
+        return response.get("answer", Copies.TRY_AGAIN.value).replace("$", r"\$")
