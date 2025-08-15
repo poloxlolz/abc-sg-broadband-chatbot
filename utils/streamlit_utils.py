@@ -79,15 +79,15 @@ class StreamlitUtils:
             time.sleep(delay)
 
     def render_content(self, base_cls):
-        content = base_cls.content.replace("$", r"\$")
-
         if isinstance(base_cls, HumanMessage):
             st.markdown(
-                body=ChatBubbleStyling.HUMAN.format(content=content),
+                body=ChatBubbleStyling.HUMAN.format(content=base_cls.content),
                 unsafe_allow_html=True,
             )
         else:
-            st.markdown(body=content, unsafe_allow_html=True)
+            st.markdown(
+                body=base_cls.content.replace("$", r"\$"), unsafe_allow_html=True
+            )
 
     def render_chat_history(self):
         for base_cls in st.session_state.chat_history.messages:
