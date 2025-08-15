@@ -65,7 +65,7 @@ class StreamlitUtils:
 
     @staticmethod
     def write_stream_markdown(
-        base_cls: BaseMessage, container, chunk_size=4, delay=0.03
+        base_cls: BaseMessage, container, chunk_size=4, delay=0.02
     ):
         stream_content = ""
         for i in range(0, len(base_cls.content), chunk_size):
