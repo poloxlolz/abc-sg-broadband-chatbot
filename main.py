@@ -13,8 +13,8 @@ st.caption("A Streamlit chatbot powered by OpenAI")
 
 
 def main():
-    # if not auth_utils.check_password():
-    #     st.stop()
+    if not auth_utils.check_password():
+        st.stop()
 
     st_utils = StreamlitUtils()
 
