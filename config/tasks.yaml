@@ -1,0 +1,44 @@
+thirdparty_scrape_task:
+  description: >
+    Scrape the entire HardwareZone broadband forum thread for all information
+    about broadband plans, providers, promotions, contract terms, and user feedback.
+    Extract everything relevant to end users, ignoring off-topic discussion.
+  expected_output: >
+    Raw, comprehensive content from the forum, including plan details, prices,
+    speeds, contract lengths, promotions, bundles, and user experiences.
+  markdown: true
+
+content_curator_task:
+  description: >
+    Take the raw output from the scraper and clean it. Remove redundant or
+    unnecessary content while retaining all information an end user needs to
+    make informed broadband decisions.
+  expected_output: >
+    Structured content organized by provider and plan, highlighting:
+    - Provider
+    - Plan name
+    - Speeds (download/upload)
+    - Monthly price
+    - Contract length
+    - Promotions or bundles
+    - Key user feedback (praises, complaints, unique insights)
+    Ready for further processing.
+  markdown: true
+
+rag_formatter_task:
+  description: >
+    Take the curated broadband content and prepare it for RAG ingestion. Keep
+    Markdown formatting in the descriptive text so that bullet points, tables,
+    and emphasis are preserved. Format the output as valid JSON/dictionaries
+    that can be directly parsed with `json.loads()`. Include metadata for each
+    provider and plan.
+  expected_output: >
+    A JSON-compatible list of structured objects, each containing:
+    - provider
+    - plan_name
+    - text: descriptive content including speeds, prices, contract info, promotions,
+      user feedback, and any Markdown formatting
+    - metadata: any additional attributes needed for retrieval or filtering
+    Each object is self-contained and ready to be inserted into a vector store
+    such as Chroma. The output string should be valid JSON and parsable by `json.loads()`.
+  markdown: false

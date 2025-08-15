@@ -15,7 +15,7 @@ class Copywriting(str, Enum):
 
 
 class ChatBubbleStyling(str, Enum):
-    USER = """
+    HUMAN = """
             <div style="
                 display: flex;
                 justify-content: flex-end;
@@ -44,10 +44,15 @@ class ChatBubbleStyling(str, Enum):
         """
 
 
+@st.cache_resource(show_spinner=False)
+def get_llm_instance(model="gpt-4.1-mini"):
+    return LLM_Utils(model=model)
+
+
 class StreamlitUtils:
     def __init__(self):
         self.initialise_session_state()
-        self.llm = LLM_Utils()
+        self.llm = get_llm_instance()
 
     def initialise_session_state(self):
         if "chat_history" not in st.session_state:
@@ -83,7 +88,7 @@ class StreamlitUtils:
     def render_content(self, base_cls):
         if isinstance(base_cls, HumanMessage):
             st.markdown(
-                body=ChatBubbleStyling.USER.format(content=base_cls.content),
+                body=ChatBubbleStyling.HUMAN.format(content=base_cls.content),
                 unsafe_allow_html=True,
             )
         else:
@@ -98,7 +103,7 @@ class StreamlitUtils:
             placeholder=Copywriting.CHAT_INPUT_PLACEHOLDER.value, max_chars=1000
         ):
             human_msg = HumanMessage(content=prompt)
-            st.session_state.chat_history.add_message(message=human_msg)
+            # st.session_state.chat_history.add_message(message=human_msg)
             self.render_content(base_cls=human_msg)
 
             ai_container = self.render_spinner()
@@ -110,5 +115,5 @@ class StreamlitUtils:
             ai_msg = AIMessage(
                 content=response.get("answer", Copywriting.TRY_AGAIN.value)
             )
-            st.session_state.chat_history.add_message(message=ai_msg)
+            # st.session_state.chat_history.add_message(message=ai_msg)
             self.write_stream_markdown(base_cls=ai_msg, container=ai_container)
