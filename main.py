@@ -3,7 +3,6 @@ import streamlit as st
 import utils.auth_utils as auth_utils
 import utils.sqlite_patch
 from utils.streamlit_utils import StreamlitUtils
-from zcrew import simple_crew
 
 st.set_page_config(layout="centered", page_title="My Streamlit App")
 st.title("Singapore Broadband Bot! 🚀")

@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 2
 requires-python = ">=3.10"
 resolution-markers = [
     "python_full_version >= '3.13'",
@@ -4686,13 +4686,10 @@ dependencies = [
     { name = "chromadb" },
     { name = "crewai" },
     { name = "crewai-tools" },
-    { name = "langchain-experimental" },
     { name = "openai" },
     { name = "pysqlite3-binary", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
     { name = "python-dotenv" },
-    { name = "rich" },
     { name = "streamlit" },
-    { name = "tiktoken" },
 ]
 
 [package.metadata]
@@ -4701,13 +4698,10 @@ requires-dist = [
     { name = "chromadb", specifier = ">=0.5.23" },
     { name = "crewai", specifier = ">=0.157.0" },
     { name = "crewai-tools", specifier = ">=0.60.0" },
-    { name = "langchain-experimental", specifier = ">=0.3.4" },
     { name = "openai", specifier = ">=1.99.6" },
     { name = "pysqlite3-binary", marker = "platform_machine == 'x86_64' and sys_platform == 'linux'" },
     { name = "python-dotenv", specifier = ">=1.1.1" },
-    { name = "rich", specifier = ">=13.9.4" },
     { name = "streamlit", specifier = ">=1.48.0" },
-    { name = "tiktoken", specifier = ">=0.11.0" },
 ]
 
 [[package]]
