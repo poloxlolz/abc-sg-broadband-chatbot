@@ -112,8 +112,6 @@ class StreamlitUtils:
                 prompt=prompt, chat_history=lambda: st.session_state.chat_history
             )
 
-            ai_msg = AIMessage(
-                content=response.get("answer", Copywriting.TRY_AGAIN.value)
-            )
+            ai_msg = AIMessage(content=response)
             # st.session_state.chat_history.add_message(message=ai_msg)
             self.write_stream_markdown(base_cls=ai_msg, container=ai_container)

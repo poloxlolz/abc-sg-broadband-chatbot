@@ -11,6 +11,7 @@ from langchain_text_splitters.markdown import MarkdownTextSplitter
 
 import utils.prompt_templates as prompt_templates
 from utils.crewai_utils import BroadbandCrew
+from utils.streamlit_utils import Copywriting
 
 
 class LLM_Utils:
@@ -62,4 +63,4 @@ class LLM_Utils:
         except Exception as e:
             return f"Error : {e}"
 
-        return response
+        return response.get("answer", Copywriting.TRY_AGAIN.value)
