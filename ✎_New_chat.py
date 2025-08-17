@@ -2,14 +2,19 @@ import streamlit as st
 
 import utils.auth_utils as auth_utils
 import utils.sqlite_patch
+from utils.copywriting_utils import Copies
 from utils.streamlit_utils import StreamlitUtils
 
-st.set_page_config(layout="centered", page_title="My Streamlit App")
-st.title("Singapore Broadband Bot! 🚀")
+st.set_page_config(page_title="SG Broadband Advisor", page_icon="🛜", layout="centered")
+
+st.title("Singapore Broadband Advisor 🚀")
 st.caption(
     "Stop getting swindled! Find out about Singapore's best broadband deals today!"
 )
-st.caption("A Streamlit chatbot powered by OpenAI")
+
+
+with st.expander(label=Copies.DISCLAIMER.name.title()):
+    st.markdown(body=Copies.DISCLAIMER.value, unsafe_allow_html=True)
 
 
 def main():

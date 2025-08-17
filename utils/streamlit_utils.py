@@ -5,7 +5,7 @@ import streamlit as st
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
 
-from utils.Copywriting_utils import Copies
+from utils.copywriting_utils import Copies
 from utils.llm_utils import LLM_Utils
 
 
@@ -97,9 +97,7 @@ class StreamlitUtils:
         if prompt := st.chat_input(
             placeholder=Copies.CHAT_INPUT_PLACEHOLDER.value, max_chars=1000
         ):
-            human_msg = HumanMessage(content=prompt)
-            # st.session_state.chat_history.add_message(message=human_msg)
-            self.render_content(base_cls=human_msg)
+            self.render_content(base_cls=HumanMessage(content=prompt))
 
             ai_container = self.render_spinner()
 
@@ -107,6 +105,6 @@ class StreamlitUtils:
                 prompt=prompt, chat_history=lambda: st.session_state.chat_history
             )
 
-            ai_msg = AIMessage(content=response)
-            # st.session_state.chat_history.add_message(message=ai_msg)
-            self.write_stream_markdown(base_cls=ai_msg, container=ai_container)
+            self.write_stream_markdown(
+                base_cls=AIMessage(content=response), container=ai_container
+            )

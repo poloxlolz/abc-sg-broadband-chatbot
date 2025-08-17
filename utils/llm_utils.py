@@ -10,7 +10,7 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_text_splitters.markdown import MarkdownTextSplitter
 
 import utils.prompt_templates as prompt_templates
-from utils.Copywriting_utils import Copies
+from utils.copywriting_utils import Copies
 from utils.crewai_utils import BroadbandCrew
 
 
