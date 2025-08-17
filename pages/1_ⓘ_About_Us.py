@@ -1,16 +1,34 @@
 import streamlit as st
 
-# region <--------- Streamlit App Configuration --------->
-st.set_page_config(layout="centered", page_title="My Streamlit App")
-# endregion <--------- Streamlit App Configuration --------->
+st.set_page_config(page_title="About Us", layout="centered")
 
-st.title("About this App")
+st.title("About Us")
 
-st.write(
-    "This is a Streamlit App that demonstrates how to use the OpenAI API to generate text completions."
-)
+st.markdown("""
+### 🏗️ Project Scope
+This project was developed to provide insights and tools for exploring and understanding broadband plans in Singapore.  
+Our aim is to make information about pricing, speeds, and promotions more transparent and easier to compare.
 
-with st.expander("How to use this App"):
-    st.write("1. Enter your prompt in the text area.")
-    st.write("2. Click the 'Submit' button.")
-    st.write("3. The app will generate a text completion based on your prompt.")
+---
+
+### 🎯 Objectives
+- **Simplify broadband comparison** by aggregating information from multiple providers.  
+- **Highlight deals and features** in a clear and structured way.  
+- **Help users make informed choices** about which plans fit their needs.  
+- **Demonstrate LLM-powered retrieval** in an educational prototype.  
+
+---
+
+### 📊 Data Sources
+The information in this app is based on:
+- Official broadband provider websites.  
+- Third-party curated content (e.g., HardwareZone forums).  
+- Publicly available reference materials.  
+
+---
+
+### ⚙️ Features
+- **Interactive chatbot** that answers broadband-related questions.  
+- **Context-aware responses** with multi-turn memory powered by Retrieval-Augmented Generation (RAG).  
+- **Simple, accessible interface** built with Streamlit.  
+""")

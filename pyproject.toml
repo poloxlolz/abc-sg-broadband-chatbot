@@ -11,4 +11,5 @@ dependencies = [
     "openai>=1.99.6",
     "streamlit>=1.48.0",
     "chromadb>=0.5.23",
+    "graphviz>=0.21",
 ]
