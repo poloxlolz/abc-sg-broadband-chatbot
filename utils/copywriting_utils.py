@@ -2,6 +2,7 @@ from enum import Enum
 
 
 class Copies(str, Enum):
+    PAGE_TITLE = "SG Broadband Chatbot"
     TITLE = "Singapore Broadband Chatbot 🚀"
     GREETINGS = "Hello! Let's talk broadband! How can I help you today?"
     CAPTION = (

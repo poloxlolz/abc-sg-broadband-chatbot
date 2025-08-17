@@ -5,13 +5,15 @@ import utils.sqlite_patch
 from utils.copywriting_utils import Copies
 from utils.streamlit_utils import StreamlitUtils
 
-st.set_page_config(page_title="SG Broadband Chatbot", page_icon="🛜", layout="centered")
+st.set_page_config(
+    page_title=Copies.PAGE_TITLE.value, page_icon="🛜", layout="centered"
+)
 
 st.title(body=Copies.TITLE.value)
 st.caption(body=Copies.CAPTION.value)
 
 
-with st.expander(label=Copies.DISCLAIMER.name.title()):
+with st.expander(label=f"**{Copies.DISCLAIMER.name.title()}**"):
     st.markdown(body=Copies.DISCLAIMER.value, unsafe_allow_html=True)
 
 

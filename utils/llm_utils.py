@@ -31,7 +31,7 @@ class LLM_Utils:
             persist_directory="./broadband_vectorstore",
         )
 
-        # self.vectorstore.persist()
+        self.vectorstore.persist()
 
         self.retriever = self.vectorstore.as_retriever(search_kwargs={"k": 3})
 
