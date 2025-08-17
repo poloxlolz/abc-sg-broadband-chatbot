@@ -2,7 +2,11 @@ from enum import Enum
 
 
 class Copies(str, Enum):
+    TITLE = "Singapore Broadband Chatbot 🚀"
     GREETINGS = "Hello! Let's talk broadband! How can I help you today?"
+    CAPTION = (
+        "Stop getting swindled! Find out about Singapore's best broadband deals today!"
+    )
     CHAT_INPUT_PLACEHOLDER = "Ask anything"
     TRY_AGAIN = "Sorry, unexpected issue encountered, please try again later!"
     DISCLAIMER = """

@@ -7,10 +7,8 @@ from utils.streamlit_utils import StreamlitUtils
 
 st.set_page_config(page_title="SG Broadband Chatbot", page_icon="🛜", layout="centered")
 
-st.title("Singapore Broadband Chatbot 🚀")
-st.caption(
-    "Stop getting swindled! Find out about Singapore's best broadband deals today!"
-)
+st.title(body=Copies.TITLE.value)
+st.caption(body=Copies.CAPTION.value)
 
 
 with st.expander(label=Copies.DISCLAIMER.name.title()):
