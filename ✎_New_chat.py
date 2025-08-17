@@ -5,9 +5,9 @@ import utils.sqlite_patch
 from utils.copywriting_utils import Copies
 from utils.streamlit_utils import StreamlitUtils
 
-st.set_page_config(page_title="SG Broadband Advisor", page_icon="🛜", layout="centered")
+st.set_page_config(page_title="SG Broadband Chatbot", page_icon="🛜", layout="centered")
 
-st.title("Singapore Broadband Advisor 🚀")
+st.title("Singapore Broadband Chatbot 🚀")
 st.caption(
     "Stop getting swindled! Find out about Singapore's best broadband deals today!"
 )
