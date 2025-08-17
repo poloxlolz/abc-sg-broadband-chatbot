@@ -13,18 +13,17 @@ st.title(body=Copies.TITLE.value)
 st.caption(body=Copies.CAPTION.value)
 
 
-with st.expander(label=f"**{Copies.DISCLAIMER.name.title()}**"):
-    st.markdown(body=Copies.DISCLAIMER.value, unsafe_allow_html=True)
-
-
-if st.button("🎵 Play Background Music!"):
+with st.sidebar:
+    st.write(Copies.MUSIC.value)
     st.audio(
         data="./assets/Pom Pom - Dalkom Sounds.mp3",
         format="audio/mpeg",
         loop=True,
-        width=300,
         autoplay=True,
     )
+
+with st.expander(label=f"**{Copies.DISCLAIMER.name.title()}**"):
+    st.markdown(body=Copies.DISCLAIMER.value, unsafe_allow_html=True)
 
 
 def main():

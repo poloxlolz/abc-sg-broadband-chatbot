@@ -2,7 +2,6 @@ import streamlit as st
 from graphviz import Digraph
 
 st.set_page_config(page_title="Methodology", layout="centered")
-
 st.title("📖 Methodology")
 
 st.markdown("""
@@ -48,12 +47,11 @@ The pipeline combines **automated data collection (via CrewAI agents)**, **docum
 st.markdown("---")
 st.subheader("📊 Flowchart of the Chatbot Pipeline")
 
-# Create a styled flowchart
-flow = Digraph()
 
+flow = Digraph()
 flow.attr(rankdir="TB", size="8")
 
-# Styles
+
 input_style = {"shape": "parallelogram", "style": "filled", "fillcolor": "#AED6F1"}
 agent_style = {"shape": "box", "style": "filled", "fillcolor": "#F9E79F"}
 process_style = {"shape": "box", "style": "filled", "fillcolor": "#ABEBC6"}
@@ -61,7 +59,7 @@ retrieval_style = {"shape": "cylinder", "style": "filled", "fillcolor": "#F5B7B1
 llm_style = {"shape": "diamond", "style": "filled", "fillcolor": "#D2B4DE"}
 output_style = {"shape": "oval", "style": "filled", "fillcolor": "#A3E4D7"}
 
-# Nodes
+
 flow.node("A", "CrewAI Agents\n(Scraper & Curator)", **agent_style)
 flow.node("B", "Cleaned Broadband Data\n(Markdown docs)", **process_style)
 flow.node("C", "Split into Chunks\n(Markdown Splitter)", **process_style)
@@ -74,7 +72,7 @@ flow.node("I", "Combine Query + Context\n(RAG Pipeline)", **process_style)
 flow.node("J", "LLM Reasoning &\nResponse Generation", **llm_style)
 flow.node("K", "Streamlit Chat UI\nDisplays Answer", **output_style)
 
-# Edges
+
 flow.edge("A", "B")
 flow.edge("B", "C")
 flow.edge("C", "D")

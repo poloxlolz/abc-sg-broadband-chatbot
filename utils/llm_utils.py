@@ -18,7 +18,6 @@ class LLM_Utils:
     def __init__(self, model="gpt-4.1-mini"):
         self.llm = ChatOpenAI(model=model)
         self.embedding = OpenAIEmbeddings(model="text-embedding-3-small")
-        self.vectorize_markdown()
 
     def vectorize_markdown(self):
         results = BroadbandCrew().crew().kickoff()

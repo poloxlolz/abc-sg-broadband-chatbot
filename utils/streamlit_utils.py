@@ -41,7 +41,10 @@ class ChatBubbleStyling(str, Enum):
 
 @st.cache_resource(show_spinner=False)
 def get_llm_instance(model="gpt-4.1-mini"):
-    return LLM_Utils(model=model)
+    llm_instance = LLM_Utils(model=model)
+    with st.spinner(text=Copies.SPINNER.value, show_time=True):
+        llm_instance.vectorize_markdown()
+    return llm_instance
 
 
 class StreamlitUtils:

@@ -2,6 +2,8 @@ from enum import Enum
 
 
 class Copies(str, Enum):
+    MUSIC = "♪ Relax with Music 😌"
+    SPINNER = "⏳ Hang tight! We’re fetching the latest broadband deals for you — just a minute!"
     PAGE_TITLE = "SG Broadband Chatbot"
     TITLE = "Singapore Broadband Chatbot 🚀"
     GREETINGS = "Hello! Let's talk broadband! How can I help you today?"
