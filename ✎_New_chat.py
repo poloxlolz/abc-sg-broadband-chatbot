@@ -17,6 +17,16 @@ with st.expander(label=f"**{Copies.DISCLAIMER.name.title()}**"):
     st.markdown(body=Copies.DISCLAIMER.value, unsafe_allow_html=True)
 
 
+if st.button("🎵 Play Background Music!"):
+    st.audio(
+        data="./assets/Pom Pom - Dalkom Sounds.mp3",
+        format="audio/mpeg",
+        loop=True,
+        width=300,
+        autoplay=True,
+    )
+
+
 def main():
     if not auth_utils.check_password():
         st.stop()
