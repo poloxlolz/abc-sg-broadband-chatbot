@@ -32,11 +32,11 @@ class BroadbandCrew:
 
     @agent
     def thirdparty_scraper(self) -> Agent:
-        return Agent(config=self.agents_config["thirdparty_scraper"], verbose=True)
+        return Agent(config=self.agents_config["thirdparty_scraper"])
 
     @agent
     def content_curator(self) -> Agent:
-        return Agent(config=self.agents_config["content_curator"], verbose=True)
+        return Agent(config=self.agents_config["content_curator"])
 
     # @agent
     # def rag_formatter(self) -> Agent:
